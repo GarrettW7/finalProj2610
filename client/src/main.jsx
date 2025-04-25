@@ -5,6 +5,8 @@ import './index.css'
 import 'vite/modulepreload-polyfill'
 import {createHashRouter, RouterProvider} from 'react-router';
 import { TodoList } from './pages/TodoList.jsx'
+import { TestComponent } from './pages/Natalie.jsx'; // Import TestComponent
+
 import { CreateTodo } from './pages/CreateTodo.jsx'
 
 const router = createHashRouter([
