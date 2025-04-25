@@ -8,6 +8,7 @@ import json
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
 import time
+from .utils.test import testMethod  # Import the function
 
 # Load manifest when server launches
 MANIFEST = {}
@@ -44,11 +45,18 @@ def todos(req):
     todos = req.user.todo_set.all()
     return JsonResponse({"todos": [model_to_dict(todo) for todo in todos]})
 
+from django.http import JsonResponse
+from .utils.test import testMethod  # Import the function
+
+def test_view(req):
+    result = testMethod()  # Call the function
+    return JsonResponse({"result": result})  # Return the result as JSON 
+
 @login_required
 def todo(req, id):
     if req.method == "PUT":
         time.sleep(3)
-        notavariable.doThing()
+        # notavariable.doThing()
         body = json.loads(req.body)
         todo = Todo.objects.get(id=id)
         todo.completed = body["completed"]
