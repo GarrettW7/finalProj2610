@@ -17,9 +17,18 @@ if not settings.DEBUG:
     MANIFEST = json.load(f)
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+import json
+
+@csrf_exempt  # Disable CSRF for testing purposes (not recommended for production)
 def test_view(req):
-    result = testMethod()  # Call the function
-    return JsonResponse({"result": result})  # Return the result as JSON 
+    if req.method == "POST":
+        body = json.loads(req.body)
+        message = body.get("message", "")  # Get the string from the request body
+        result = testMethod(message)  # Pass the string to testMethod
+        return JsonResponse({"result": result})  # Return the result as JSON
+    return JsonResponse({"error": "Invalid request method"}, status=400) 
 
 
 

@@ -2,9 +2,13 @@
 from .natalie import getNataliesOpinion
 
 
-def testMethod():
+def testMethod(message):
     # print("testMethod")
     
-    test = getNataliesOpinion("Hello natalie! How are you?")
+    test = getNataliesOpinion(message)
+    if message == '':
+        test = "Natalie is not available right now. Please try again later."
+        return 'Please enter something'
+
     return test
 
