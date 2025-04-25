@@ -17,6 +17,12 @@ if not settings.DEBUG:
     MANIFEST = json.load(f)
 
 # Create your views here.
+def test_view(req):
+    result = testMethod()  # Call the function
+    return JsonResponse({"result": result})  # Return the result as JSON 
+
+
+
 @login_required
 def index(req):
     context = {
@@ -28,6 +34,7 @@ def index(req):
     }
     return render(req, "core/index.html", context)
 
+# Todos stuff here stuff here -----
 
 @login_required
 def todos(req):
@@ -48,9 +55,6 @@ def todos(req):
 from django.http import JsonResponse
 from .utils.test import testMethod  # Import the function
 
-def test_view(req):
-    result = testMethod()  # Call the function
-    return JsonResponse({"result": result})  # Return the result as JSON 
 
 @login_required
 def todo(req, id):
