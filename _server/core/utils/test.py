@@ -1,4 +1,10 @@
+
+from .natalie import getNataliesOpinion
+
+
 def testMethod():
     print("testMethod")
-    return "Hello mason"
+    
+    test = getNataliesOpinion("Hello natalie! How are you?", "Hello natalie! How are you?")
+    return test
 
