@@ -7,7 +7,7 @@ conversation_history = []
 def add_to_conversation(role, content):
     conversation_history.append({"role": role, "content": content})
 
-def getNataliesOpinion(message, history):
+def getNataliesOpinion(message):
 
     chat_completion = client.chat.completions.create(
         #
@@ -23,10 +23,10 @@ def getNataliesOpinion(message, history):
                 "content": "Your name is natalie! You are a nutrition specialist, but also a great listener. Talk to me about anything!"
                 # "content": "The chat history so far is: " 
             },
-            {
-                "role": "system",
-                "content": "The chat history so far is: " + history
-            },
+            # {
+            #     "role": "system",
+            #     "content": "The chat history so far is: " + history
+            # },
             # Set a user message for the assistant to respond to.
             {
                 "role": "user",
@@ -67,5 +67,6 @@ def getNataliesOpinion(message, history):
     # Print the completion returned by the LLM.
     nataliesResponse = chat_completion.choices[0].message.content
     print(chat_completion.choices[0].message.content)
-    return f"{history} ---- user:{message} ---- system:{nataliesResponse}"
+    return nataliesResponse
+    # return f"{history} ---- user:{message} ---- system:{nataliesResponse}"
 

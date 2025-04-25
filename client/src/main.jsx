@@ -16,7 +16,7 @@ const router = createHashRouter([
     children: [
       {
         path: "/", // this matches the root of the Layout
-        element: <TodoList />
+        element: <TestComponent />
       },
       {
         path: "new",
