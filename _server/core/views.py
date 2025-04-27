@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from django.forms.models import model_to_dict
 import time
 from .utils.test import testMethod  # Import the function
+from .utils.natalie import getNataliesOpinion
 
 # Load manifest when server launches
 MANIFEST = {}
@@ -25,10 +26,21 @@ import json
 def test_view(req):
     if req.method == "POST":
         body = json.loads(req.body)
-        message = body.get("message", "")  # Get the string from the request body
-        result = testMethod(message)  # Pass the string to testMethod
+        print(f"Request: {req}")
+        print("--------")
+        print(f"The body is: {body}")
+        message = body.get("body")  # Get the string from the request body
+
+        # if message is None:
+        #     return JsonResponse({"error": "Missing 'message' key in request body"}, status=400)
+        message = message.strip()  # Remove leading/trailing whitespace
+        message = message[11:]
+        print(f"The message is: {message}")
+        result = getNataliesOpinion(message)  # Call the function with the string
+        # result = testMethod(message)  # Pass the string to testMethod
+
         return JsonResponse({"result": result})  # Return the result as JSON
-    return JsonResponse({"error": "Invalid request method"}, status=400) 
+    return JsonResponse({"error": "Invalid request method"}, status=400)
 
 
 

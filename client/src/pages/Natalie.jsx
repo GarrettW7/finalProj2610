@@ -20,24 +20,23 @@ export function TestComponent() {
 //     fetchData();
 //   }, []);
 
-  async function sendMessage() {
+async function sendMessage() {
     if (inputMessage.trim() === "") return; // Prevent sending empty messages
   
-    const userText = inputMessage;
+    const userText = inputMessage; // Get the user's input
     setInputMessage(""); // Clear the input field
   
     // Add the user's message to the chat log
     setChatLog(prev => [...prev, { sender: "user", text: userText }, { sender: "bot", text: "Natalie is typing..." }]);
   
     try {
-      // Send the message to the server
-      const response = await makeRequest("/test/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userText }), // Send the user's input
-      });
+        // Send the message to the server
+        const response = await makeRequest("/test/", "POST", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userText }), // Send the user's input
+        });
   
       if (response.ok) {
         const data = await response.json();
@@ -72,7 +71,7 @@ export function TestComponent() {
 
   return (
     <div>
-      <h1>Test Method Result</h1>
+      <h1>Welcome to the Natalie page! </h1>
       <p>{result}</p>
 
       {/* Chatbot UI */}

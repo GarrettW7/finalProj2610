@@ -66,7 +66,7 @@ def getNataliesOpinion(message):
 
     # Print the completion returned by the LLM.
     nataliesResponse = chat_completion.choices[0].message.content
-    print(chat_completion.choices[0].message.content)
+    # print(chat_completion.choices[0].message.content)
     return nataliesResponse
     # return f"{history} ---- user:{message} ---- system:{nataliesResponse}"
 
