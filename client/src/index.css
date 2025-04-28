@@ -14,6 +14,34 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.logout {
+  appearance: none;
+  background-color: #3a30f6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  }
+
+  .logout:hover {
+    background-color: #e60000;
+    transform: scale(1.1);
+  }
+
+.headerLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -50,3 +78,42 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+#chatInput {
+  width: 100%; /* Full width */
+  font-size: 16px; /* Adjust font size */
+  padding: 10px; /* Add padding */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+#chatLog {
+  display: flex;
+  flex-direction: column; /* Stack messages vertically */
+  gap: 10px; /* Add space between messages */
+  padding: 10px; /* Add padding around the chat log */
+}
+
+.message {
+  padding: 10px; /* Add padding inside each message */
+  border-radius: 5px; /* Round the corners */
+  max-width: 70%; /* Limit the width of messages */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: transform 0.2s; /* Add a hover effect */
+}
+
+.message:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+.message.User {
+  align-self: flex-end; /* Align user messages to the right */
+  background-color: #d1e7dd; /* Light green background for user messages */
+  color: #0f5132; /* Dark green text for user messages */
+}
+
+.message.Natalie {
+  align-self: flex-start; /* Align bot messages to the left */
+  background-color: #f8d7da; /* Light red background for bot messages */
+  color: #842029; /* Dark red text for bot messages */
+}

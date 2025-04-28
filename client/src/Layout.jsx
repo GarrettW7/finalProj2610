@@ -18,8 +18,8 @@ function App() {
   return (
     <>
       <nav className="navbar">
-        <h1>Todos</h1>
-        <button onClick={logout}>Logout</button>
+        <h1 className = 'headerLayout'>AI helper tools!</h1>
+        <button className = 'logout' onClick={logout}>Logout</button>
       </nav>
       <main>
         <Outlet />
