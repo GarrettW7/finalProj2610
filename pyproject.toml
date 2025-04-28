@@ -10,9 +10,10 @@ python = "^3.11"
 django = "^5.0.0"
 requests = "^2.31.0"
 python-dotenv = "^1.0.0"
-groq = "^0.1.0"
-
-
+groq = "^0.23.1"
+numpy = "^1.24.0"  # Add numpy
+sounddevice = "^0.4.6"  # Add sounddevice
+scipy = "^1.10.0"  # Add scipy
 
 [build-system]
 requires = ["poetry-core"]
