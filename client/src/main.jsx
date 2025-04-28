@@ -1,13 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import Layout from './Layout.jsx'
-import './index.css'
-import 'vite/modulepreload-polyfill'
-import {createHashRouter, RouterProvider} from 'react-router';
-import { TodoList } from './pages/TodoList.jsx'
-import { TestComponent } from './pages/Natalie.jsx'; // Import TestComponent
-
-import { CreateTodo } from './pages/CreateTodo.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Layout from './Layout.jsx';
+import './index.css';
+import 'vite/modulepreload-polyfill';
+import { createHashRouter, RouterProvider } from 'react-router';
+import { Home } from './pages/Home.jsx'; // Import Home component
+import { NataliesPage } from './pages/Natalie.jsx'; // Import Natalie component
 
 const router = createHashRouter([
   {
@@ -15,17 +13,17 @@ const router = createHashRouter([
     element: <Layout />,
     children: [
       {
-        path: "/", // this matches the root of the Layout
-        element: <TestComponent />
+        path: "/", // Default route
+        element: <Home /> // Render Home component at startup
       },
       {
-        path: "new",
-        element: <CreateTodo />
+        path: "natalie", // Route for Natalie page
+        element: <NataliesPage />
       }
     ]
   }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />,
-)
+);

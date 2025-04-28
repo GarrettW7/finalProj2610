@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
-export function TestComponent() {
+export function NataliesPage() {
   const makeRequest = useFetch();
   const [chatLog, setChatLog] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
