@@ -6,12 +6,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    /* style your login pages here because the normal
-      static asset flow is different now */
-  </style>
+    body {
+      background-color: #242424;
+      color: white;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    div {
+      width: 100%;
+    }
+  
+    .login-container {
+      background: #2c2c2c;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+  
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    form div {
+      width: 100%;
+    }
+  
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 90%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      background-color: #1a1a1a;
+      border: 1px solid #555;
+      border-radius: 6px;
+      color: white;
+      font-size: 1rem;
+    }
+
+    label {
+      text-align: left;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }  
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: rebeccapurple;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #732d91;
+    }
+
+    .topbar {
+      display: flex;
+      height: 60px;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: rebeccapurple;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .page-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+      padding: 2rem 1rem;
+    }
+
+  </style>  
 </head>
 <body>
-  {% block content %}
-  {% endblock %}
+  <div class="topbar">
+    AI helper tools!
+  </div>
+
+  <div class="page-content">
+    <div class="login-container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
 </body>
 </html>

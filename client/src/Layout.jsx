@@ -21,6 +21,9 @@ function App() {
   const goToNataliePage = () => {
     navigate('/natalie'); // Navigate to Natalie page
   };
+  const goToJarvisPage = () => {
+    navigate('/jarvis'); 
+  };
 
   return (
     <>
@@ -28,6 +31,7 @@ function App() {
         <h1 className = 'headerLayout'>AI helper tools!</h1>
         <button className='home' onClick={() => (window.location = "/")}>Home</button>
         <button className='natalie' onClick={goToNataliePage}>Natalie</button>
+        <button className='jarvis' onClick={goToJarvisPage}>Jarvis</button>
         <button className = 'logout' onClick={logout}>Logout</button>
       </nav>
       <main>

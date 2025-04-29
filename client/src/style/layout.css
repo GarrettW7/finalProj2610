@@ -1,0 +1,14 @@
+/* <button className='home' onClick={() => (window.location = "/")}>Home</button>
+        <button className='natalie' onClick={goToNataliePage}>Natalie</button>
+        <button className = 'logout' onClick={logout}>Logout</button>
+      </nav> */
+
+button {
+  background-color: rgb(134, 87, 182);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}

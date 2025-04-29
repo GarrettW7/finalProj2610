@@ -14,6 +14,7 @@ groq = "^0.23.1"
 numpy = "^1.24.0"  # Add numpy
 sounddevice = "^0.4.6"  # Add sounddevice
 scipy = "^1.10.0"  # Add scipy
+gtts = "^2.3.2" 
 
 [build-system]
 requires = ["poetry-core"]

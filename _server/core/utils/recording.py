@@ -3,7 +3,7 @@ import sounddevice as sd
 import threading
 from scipy.io.wavfile import write
 
-def testingNewRecording():
+def recording():
     fs = 44100  # Sample rate
     frames = []  # To store recorded audio chunks
     is_recording = False

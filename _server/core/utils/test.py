@@ -3,8 +3,6 @@ from .natalie import getNataliesOpinion
 
 
 def testMethod(message):
-    # print("testMethod")
-    # print(message)
     
     test = getNataliesOpinion(message)
     if message == '':
