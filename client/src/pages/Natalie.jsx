@@ -5,32 +5,31 @@ export function NataliesPage() {
   const makeRequest = useFetch();
   const [chatLog, setChatLog] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-//   const [chatHistory, setChatHistory] = useState([]);
 
-async function sendMessage() {
+  async function sendMessage() {
     if (inputMessage.trim() === "") return; // Prevent sending empty messages
-  
+
     const userText = inputMessage; // Get the user's input
     setInputMessage(""); // Clear the input field
-  
+
     // Add the user's message to the chat log
-    setChatLog(prev => [...prev, { sender: "User", text: userText }, { sender: "Natalie", text: "Natalie is typing..." }]);
-  
+    setChatLog((prev) => [...prev, { sender: "User", text: userText }, { sender: "Natalie", text: "Natalie is typing..." }]);
+
     try {
-        // Send the message to the server
-        const response = await makeRequest("/test/", "POST", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: userText }), // Send the user's input
-        });
-  
+      // Send the message and history to the server
+      const response = await makeRequest("/test/", "POST", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userText, history: chatLog }), // Combine message and history
+      });
+
       if (response.ok) {
         const data = await response.json();
         const botReply = data.result; // Get the result from the server
-  
+
         // Update the chat log with the bot's reply
-        setChatLog(prev => {
+        setChatLog((prev) => {
           const newLog = [...prev];
           newLog.pop(); // Remove "Natalie is typing..." placeholder
           newLog.push({ sender: "Natalie", text: botReply });
@@ -38,7 +37,7 @@ async function sendMessage() {
         });
       } else {
         // Handle server errors
-        setChatLog(prev => {
+        setChatLog((prev) => {
           const newLog = [...prev];
           newLog.pop(); // Remove "Natalie is typing..." placeholder
           newLog.push({ sender: "Natalie", text: "Error: Unable to get a response from Natalie." });
@@ -47,7 +46,7 @@ async function sendMessage() {
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setChatLog(prev => {
+      setChatLog((prev) => {
         const newLog = [...prev];
         newLog.pop(); // Remove "Natalie is typing..." placeholder
         newLog.push({ sender: "Natalie", text: "Error: Something went wrong." });
@@ -63,11 +62,11 @@ async function sendMessage() {
       {/* Chatbot UI */}
       <div id="chatContainer">
         <div id="chatLog">
-        {chatLog.map((msg, index) => (
+          {chatLog.map((msg, index) => (
             <div key={index} className={`message ${msg.sender}`}>
-            {msg.sender}: {msg.text}
+              {msg.sender}: {msg.text}
             </div>
-        ))}
+          ))}
         </div>
 
         <div id="chatInputArea">
@@ -80,16 +79,18 @@ async function sendMessage() {
               e.target.style.height = "auto"; // Reset height to auto
               e.target.style.height = `${e.target.scrollHeight}px`; // Adjust height based on content
             }}
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }} // Send on Enter key without Shift
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+              }
+            }} // Send on Enter key without Shift
             rows={1} // Initial number of rows
             style={{ resize: "none", overflow: "hidden" }} // Prevent manual resizing
           />
-          <button onClick={sendMessage}>
-            Send
-          </button>
+          <button onClick={sendMessage}>Send</button>
         </div>
       </div>
     </div>
   );
 }
-

@@ -21,7 +21,7 @@ def speechToText(inputText):
 client = Groq(api_key=os.environ.get('GROQ_API_KEY'))
 
 
-def getJarvisOpinion(message):
+def getJarvisOpinion(message, history):
 
     chat_completion = client.chat.completions.create(
         #
@@ -42,10 +42,10 @@ def getJarvisOpinion(message):
                 """
 
             },
-            # {
-            #     "role": "system",
-            #     "content": "The chat history so far is: " + history
-            # },
+            {
+                "role": "system",
+                "content": "The chat history so far is: " + history
+            },
             # Set a user message for the assistant to respond to.
             {
                 "role": "user",

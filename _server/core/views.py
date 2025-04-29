@@ -33,10 +33,10 @@ def test_view(req):
         message = body.get("body")  # Get the string from the request body
         if message is None:
             return JsonResponse({"error": "Missing 'message' key in request body"}, status=400)
-        message = message.strip()  # Remove leading/trailing whitespace
-        message = message[11:]
-        print(f"The message is: {message}")
-        result = getNataliesOpinion(message)  # Call the function with the string
+        messageForNat = message.split("history")[0].strip()  # Get everything until "history" and remove leading/trailing whitespace
+        history = message.split("history", 1)[1].strip() if "history" in message else ""
+        print(f"The message is: {messageForNat}")
+        result = getNataliesOpinion(messageForNat, history)  # Call the function with the string
 
 
         return JsonResponse({"result": result})  # Return the result as JSON
@@ -45,16 +45,18 @@ def test_view(req):
 def talkToJarvis(req):
     if req.method == "POST":
         body = json.loads(req.body)
-        # print(f"Request: {req}")
-        # print("--------")
-        # print(f"The body is: {body}")
+        print(f"Request: {req}")
+        print("--------")
+        print(f"The body is: {body}")
         message = body.get("body")  # Get the string from the request body
         if message is None:
             return JsonResponse({"error": "Missing 'message' key in request body"}, status=400)
         message = message.strip()  # Remove leading/trailing whitespace
-        message = message[11:]
-        # print(f"The message is: {message}")
-        result = getJarvisOpinion(message)  # Call the function with the string
+        messageForJarvis = message.split("history")[0].strip()  # Get everything until "history" and remove leading/trailing whitespace
+        history = message.split("history", 1)[1].strip() if "history" in message else ""
+        print(f"The message is: {messageForJarvis}")
+        result = getJarvisOpinion(messageForJarvis, history)  # Call the function with the string
+
 
         return JsonResponse({"result": result})  # Return the result as JSON
     return JsonResponse({"error": "Invalid request method"}, status=400)

@@ -22,7 +22,7 @@ async function sendMessage() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ message: userText }), // Send the user's input
+          body: JSON.stringify({ message: userText, history: chatLog }), // Combine message and history
         });
   
       if (response.ok) {
