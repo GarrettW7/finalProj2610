@@ -3,12 +3,8 @@ from django.conf  import settings
 import json
 import os
 from django.contrib.auth.decorators import login_required
-from .models import Todo
 import json
 from django.http import JsonResponse
-from django.forms.models import model_to_dict
-import time
-from .utils.test import testMethod  # Import the function
 from .utils.natalie import getNataliesOpinion
 from .utils.jarvis import getJarvisOpinion
 
@@ -74,41 +70,4 @@ def index(req):
     }
     return render(req, "core/index.html", context)
 
-# Todos stuff here stuff here -----
 
-@login_required
-def todos(req):
-    if req.method == "POST":
-        body = json.loads(req.body)
-        todo = Todo.objects.create(
-            title=body["title"],
-            description=body["description"],
-            completed=False,
-            user=req.user
-        )
-        return JsonResponse({"todo": model_to_dict(todo)})
-
-
-    todos = req.user.todo_set.all()
-    return JsonResponse({"todos": [model_to_dict(todo) for todo in todos]})
-
-from django.http import JsonResponse
-from .utils.test import testMethod  # Import the function
-
-
-@login_required
-def todo(req, id):
-    if req.method == "PUT":
-        time.sleep(3)
-        # notavariable.doThing()
-        body = json.loads(req.body)
-        todo = Todo.objects.get(id=id)
-        todo.completed = body["completed"]
-        todo.save()
-        return JsonResponse({"todo": model_to_dict(todo)})
-    if req.method == "DELETE":
-        todo = Todo.objects.get(id=id)
-        todo.delete()
-        return JsonResponse({"todo": model_to_dict(todo)})
-
-    return JsonResponse({"todo": model_to_dict(todo)})
